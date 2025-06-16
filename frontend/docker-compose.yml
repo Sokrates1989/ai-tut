@@ -10,4 +10,5 @@ services:
       - VITE_BACKEND_URL=${VITE_BACKEND_URL}
       - VITE_COMPANY_NAME=${VITE_COMPANY_NAME}
       - PORT=${PORT} 
+      - EXTERNAL_PORT=${PORT} 
       - CHOKIDAR_USEPOLLING=true  # Needed for hot reload on some OS

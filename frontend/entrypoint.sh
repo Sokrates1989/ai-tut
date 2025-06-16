@@ -29,10 +29,10 @@ EOF
 
 # Print access links.
 HOSTNAME=$(hostname -i)
-PORT="${PORT:-80}"
+EXTERNAL_PORT="${EXTERNAL_PORT:-80}"  # fallback to 80
 echo "🌐 React frontend is now accessible at:"
-echo "   👉 http://localhost:$PORT"
-echo "   👉 http://$HOSTNAME:$PORT (within Docker network)"
+echo "   👉 http://localhost:$EXTERNAL_PORT"
+echo "   👉 http://$HOSTNAME:$EXTERNAL_PORT (within Docker network)"
 echo ""
 
 # Then start NGINX

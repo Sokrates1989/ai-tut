@@ -3,7 +3,7 @@ services:
     build:
       context: ${BACKEND_PATH}
     ports:
-      - "${BACKEND_PORT}:8000"
+      - "${BACKEND_PORT}:${BACKEND_INTERNAL_IMAGE_PORT}"
     env_file:
       - ${BACKEND_PATH}/.env
     volumes:
@@ -20,11 +20,14 @@ services:
     build:
       context: ${FRONTEND_PATH}
     ports:
-      - "${FRONTEND_PORT}:80"
-    environment:
-      - PORT=${FRONTEND_PORT}
+      - "${FRONTEND_PORT}:${FRONTEND_INTERNAL_IMAGE_PORT}"
     env_file:
       - ${FRONTEND_PATH}/.env
+    environment:
+      - EXTERNAL_PORT=${FRONTEND_PORT}
+    volumes:
+      - ${FRONTEND_PATH}:/app
+      - /app/node_modules
     depends_on:
       - backend
     restart: always
