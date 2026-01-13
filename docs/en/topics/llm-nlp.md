@@ -1,10 +1,3 @@
-# 📘 Documentation
-
-➡️ [English Documentation](docs/en/README.md)  
-➡️ [Deutsche Dokumentation](docs/de/README.md)
-
-
-
 # 🧠 Understanding LLMs & NLP – Foundations for Applied AI
 
 This README provides a foundational overview of large language models (LLMs), natural language processing (NLP), and the key concepts needed to understand and work with modern AI systems in practice.

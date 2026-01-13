@@ -1,0 +1,33 @@
+services:
+  backend:
+    build:
+      context: ${BACKEND_PATH}
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_INTERNAL_IMAGE_PORT}"
+    env_file:
+      - ${BACKEND_PATH}/.env
+    volumes:
+      - ${BACKEND_PATH}:/app
+      - ${BACKEND_PATH}/mounted_data:/mnt/data
+    restart: always
+
+  redis:
+    image: redis:6.0
+    ports:
+      - "6379:6379"
+
+  frontend:
+    build:
+      context: ${FRONTEND_PATH}
+    ports:
+      - "${FRONTEND_PORT}:${FRONTEND_INTERNAL_IMAGE_PORT}"
+    env_file:
+      - ${FRONTEND_PATH}/.env
+    environment:
+      - EXTERNAL_PORT=${FRONTEND_PORT}
+    volumes:
+      - ${FRONTEND_PATH}:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    restart: always
